@@ -16,7 +16,7 @@ const enquiryList = () => {
   const fetchEnquiries = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/enquiries/list');
+      const response = await axios.get('/api/enquiries');
       setEnquiries(response.data);
       setLoading(false);
     } catch (err) {
@@ -34,7 +34,7 @@ const enquiryList = () => {
   const deleteEnquiry = async (id) => {
     if (window.confirm('Are you sure you want to delete this enquiry?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/enquiries/delete/${id}`);
+        await axios.delete(`/api/enquiries/${id}`);
         fetchEnquiries(); // Refresh the list
       } catch (err) {
         alert('Failed to delete enquiry');
@@ -66,7 +66,7 @@ const enquiryList = () => {
         kmessage: editFormData.message
       };
       
-      await axios.put(`http://localhost:5000/api/enquiries/update/${editingId}`, updateData);
+      await axios.put(`/api/enquiries/${editingId}`, updateData);
       setEditingId(null);
       setEditFormData({ name: '', email: '', phone: '', message: '' });
       fetchEnquiries(); // Refresh the list
