@@ -20,7 +20,7 @@ const UserEnquiryUI = () => {
     };
 
     try {
-      const response = await axios.post("/api/enquiries", formData);
+      const response = await axios.post("http://localhost:5000/api/enquiries/insert", formData);
       console.log("Enquiry saved successfully:", response.data);
       setMessage("Enquiry submitted successfully!");
       e.target.reset(); // Reset the form
